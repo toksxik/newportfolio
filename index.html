@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Personal Portfolio</title>
+
+  <!-- Tailwind + DaisyUI -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    .hero-bg {
+      background-image:
+        linear-gradient(
+          to bottom,
+          rgba(32, 18, 38, 0.50) 0%,
+          rgba(92, 42, 78, 0.48) 42%,
+          rgba(190, 86, 130, 0.52) 75%,
+          rgb(252, 231, 243) 100%
+        ),
+        url("your-image.jpg");
+
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-title-box {
+      max-width: 100%;
+      transform: skewX(-6deg) scale(1);
+      transform-origin: center;
+      box-shadow: 8px 8px 0 rgba(255, 255, 255, 0.18);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .hero-title-box:hover {
+      transform: skewX(-6deg) scale(1.08);
+      box-shadow: 12px 12px 0 rgba(255, 255, 255, 0.22);
+    }
+
+    .hero-title-box span {
+      display: block;
+      transform: skewX(6deg);
+    }
+
+    .text-pop {
+      animation: textPop 0.3s ease;
+    }
+
+    @keyframes textPop {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .top-text {
+      padding-top: 20px;
+    }
+
+    .marquee-section {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .marquee-wrap {
+      width: 100%;
+    }
+
+    .marquee-track {
+      width: max-content;
+      gap: 4rem;
+      padding-right: 4rem;
+      color: white;
+      font-weight: 900;
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+      animation: marqueeMove 20s linear infinite;
+    }
+
+    .marquee-track span {
+      flex-shrink: 0;
+    }
+
+    @keyframes marqueeMove {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    .custom-gif-cursor {
+      position: fixed;
+      width: 42px;
+      height: 42px;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      display: none;
+    }
+
+    .sparkle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      font-size: 16px;
+      color: #fb7185;
+      animation: sparkleFall 0.9s ease-out forwards;
+      user-select: none;
+    }
+
+    @keyframes sparkleFall {
+      0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) translateY(0) scale(1) rotate(0deg);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) translateY(45px) scale(0.35) rotate(80deg);
+      }
+    }
+
+    body.custom-cursor-active {
+      cursor: none;
+    }
+
+    body.custom-cursor-active a,
+    body.custom-cursor-active button,
+    body.custom-cursor-active input,
+    body.custom-cursor-active textarea {
+      cursor: none;
+    }
+
+    /* tiny handmade imperfections */
+    .handmade-card {
+      position: relative;
+    }
+
+    .handmade-card::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: 28px;
+      width: 58px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid rgba(244, 114, 182, 0.18);
+      transform: rotate(-4deg);
+      border-radius: 4px;
+      backdrop-filter: blur(4px);
+      z-index: 2;
+    }
+
+    .handmade-card:nth-child(2)::before {
+      left: auto;
+      right: 34px;
+      transform: rotate(5deg);
+    }
+
+    .handmade-card:nth-child(3)::before {
+      left: 44px;
+      transform: rotate(2deg);
+    }
+
+    .imperfect-title {
+      text-decoration: underline;
+      text-decoration-style: wavy;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 8px;
+      text-decoration-color: rgba(251, 113, 133, 0.45);
+    }
+
+    .tiny-note {
+      font-size: 0.78rem;
+      color: rgba(190, 18, 60, 0.55);
+      font-weight: 900;
+      transform: rotate(-3deg);
+    }
+
+    .imperfect-button {
+      transform: rotate(-1deg);
+      transition: 0.25s ease;
+    }
+
+    .imperfect-button:hover {
+      transform: rotate(1deg) translateY(-2px);
+    }
+
+    .placeholder-text {
+      transform: rotate(-3deg);
+    }
+
+    @media (max-width: 768px) {
+      .hero-title-box {
+        transform: skewX(-4deg) scale(1);
+        box-shadow: 5px 5px 0 rgba(255, 255, 255, 0.18);
+      }
+
+      .hero-title-box:hover {
+        transform: skewX(-4deg) scale(1.03);
+        box-shadow: 7px 7px 0 rgba(255, 255, 255, 0.22);
+      }
+
+      .hero-title-box span {
+        transform: skewX(4deg);
+      }
+
+      .top-text {
+        padding-top: 0;
+        letter-spacing: 0.22em;
+      }
+
+      .marquee-track {
+        gap: 2rem;
+        padding-right: 2rem;
+        font-size: 0.95rem;
+        animation-duration: 16s;
+      }
+
+      .sparkle {
+        display: none;
+      }
+
+      .custom-gif-cursor {
+        display: none !important;
+      }
+
+      body.custom-cursor-active {
+        cursor: auto;
+      }
+
+      body.custom-cursor-active a,
+      body.custom-cursor-active button,
+      body.custom-cursor-active input,
+      body.custom-cursor-active textarea {
+        cursor: auto;
+      }
+
+      .handmade-card::before {
+        display: none;
+      }
+
+      .tiny-note {
+        transform: none;
+      }
+
+      .imperfect-button,
+      .imperfect-button:hover {
+        transform: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .marquee-track {
+        gap: 1.5rem;
+        font-size: 0.85rem;
+      }
+    }
+    .project-image-box {
+  position: relative;
+  height: 11rem;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  border: 4px solid white;
+  background: linear-gradient(to bottom right, #fecdd3, #fce7f3, white);
+}
+
+.project-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.group:hover .project-image-box img {
+  transform: scale(1.06);
+}
+
+.project-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fb7185;
+  font-weight: 900;
+  transform: rotate(-3deg);
+}
+  </style>
+</head>
+
+<body class="bg-pink-100" style="font-family: 'Nunito', sans-serif;">
+
+  <img 
+    src="src/bits-8bits.gif" 
+    alt="" 
+    id="customCursor" 
+    class="custom-gif-cursor"
+  >
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-pink-100">
+    <div class="navbar max-w-7xl mx-auto px-4 sm:px-6">
+
+      <div class="navbar-start">
+        <div class="relative md:hidden">
+          <button
+            id="mobileMenuButton"
+            class="btn btn-ghost btn-circle text-rose-500"
+            type="button"
+            aria-label="Toggle mobile menu"
+          >
+            <svg
+              id="burgerIcon"
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 transition-all duration-200"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+
+            <svg
+              id="closeIcon"
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 hidden transition-all duration-200"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+
+          <ul
+            id="mobileMenu"
+            class="menu menu-sm absolute left-0 top-14 z-[60] hidden p-3 shadow-xl bg-white rounded-2xl w-52 border border-pink-100"
+          >
+            <li><a href="#">Home</a></li>
+            <li><a href="#About">About</a></li>
+            <li><a href="#Projects">Projects</a></li>
+            <li><a href="#Skills">Skills</a></li>
+            <li><a href="#Contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <a class="text-xl sm:text-2xl font-bold tracking-tight text-rose-500">
+          MyPortfolio
+        </a>
+      </div>
+
+      <div class="navbar-center hidden md:flex">
+        <ul class="menu menu-horizontal px-1 text-sm font-semibold">
+          <li><a href="#">Home</a></li>
+          <li><a href="#About">About</a></li>
+          <li><a href="#Projects">Projects</a></li>
+          <li><a href="#Skills">Skills</a></li>
+          <li><a href="#Contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="navbar-end">
+        <a href="#Contact" class="btn btn-sm sm:btn-md rounded-full btn-outline border-rose-400 text-rose-500 hover:bg-rose-400 hover:border-rose-400 hover:text-white">
+          Let's Talk
+        </a>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="Hero" class="hero-bg relative min-h-screen flex items-center justify-center text-center px-4 sm:px-6 py-28 sm:py-32 overflow-hidden">
+
+    <div class="absolute inset-0 bg-zinc-950/10"></div>
+    <div class="absolute top-32 left-1/2 -translate-x-1/2 w-80 h-80 bg-pink-400/30 rounded-full blur-3xl"></div>
+
+    <div class="relative z-10 w-full max-w-3xl text-white mt-6 sm:mt-12">
+
+      <p class="top-text tracking-[0.25em] sm:tracking-[0.35em] text-xs sm:text-sm text-pink-200 mb-4">
+        Welcome To
+      </p>
+
+      <h1 class="uppercase leading-tight font-black flex flex-col items-center gap-3">
+        <span class="hero-title-box bg-rose-400 text-white px-4 sm:px-6 py-2 text-4xl xs:text-5xl sm:text-6xl md:text-7xl tracking-tight">
+          <span>Ichiko's</span>
+        </span>
+
+        <span class="text-rose-100 text-4xl sm:text-6xl md:text-7xl tracking-tight drop-shadow-[5px_5px_0px_rgba(190,86,130,0.35)]">
+          Portfolio
+        </span>
+      </h1>
+
+      <h2 class="mt-6 text-lg sm:text-xl md:text-2xl font-bold flex flex-wrap items-center justify-center gap-2">
+        <span>I am a</span>
+
+        <span id="changingText" class="inline-block text-rose-100 bg-white/15 border border-white/25 px-3 py-1 backdrop-blur-sm rounded-full">
+          Web Designer
+        </span>
+      </h2>
+
+      <p class="mt-5 text-sm sm:text-base text-pink-100 max-w-xl mx-auto px-2">
+        peler geming ooo
+      </p>
+
+      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="#Projects" class="imperfect-button btn w-full sm:w-auto rounded-full bg-rose-400 border-rose-400 text-white hover:bg-rose-500 hover:border-rose-500 shadow-lg shadow-rose-950/20">
+          View Projects
+        </a>
+
+        <a href="#Contact" class="btn w-full sm:w-auto rounded-full btn-outline border-rose-100 text-rose-50 hover:bg-rose-100 hover:border-rose-100 hover:text-rose-700">
+          Contact Me
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Marquee Divider -->
+  <section class="marquee-section relative z-20 bg-pink-50 -mt-1 py-6 sm:py-8 overflow-hidden">
+    <div class="w-full overflow-hidden bg-rose-400 shadow-xl shadow-rose-200/60 border-y-4 border-pink-50">
+      <div class="marquee-wrap py-3 sm:py-4 overflow-hidden whitespace-nowrap">
+        <div class="marquee-track inline-flex items-center">
+          <span>♡ PERSONAL PORTFOLIO</span>
+          <span>♡ WEB DESIGN</span>
+          <span>♡ ROBLOX DEVELOPER</span>
+          <span>♡ GAME DEV STUDENT</span>
+          <span>♡ UNITY & GODOT</span>
+
+          <span>♡ PERSONAL PORTFOLIO</span>
+          <span>♡ WEB DESIGN</span>
+          <span>♡ ROBLOX DEVELOPER</span>
+          <span>♡ GAME DEV STUDENT</span>
+          <span>♡ UNITY & GODOT</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="About" class="relative min-h-screen bg-pink-100 px-4 sm:px-6 py-16 sm:py-24 overflow-hidden">
+
+    <div class="absolute top-10 right-6 sm:top-16 sm:right-14 z-0 rotate-12 pointer-events-none opacity-90">
+      <img 
+        src="src/Transgender_Pride_flag.svg.png" 
+        alt="trans flag" 
+        class="w-20 sm:w-28 h-auto drop-shadow-[0_10px_18px_rgba(190,86,130,0.35)]"
+      >
+
+      <p class="mt-1 text-xs sm:text-sm font-black text-rose-400 drop-shadow-sm text-center">
+        trans flag lol
+      </p>
+    </div>
+
+    <div class="absolute top-20 left-10 w-56 h-56 bg-rose-200/60 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-20 right-10 w-72 h-72 bg-pink-300/40 rounded-full blur-3xl"></div>
+
+    <div class="relative z-10 max-w-6xl mx-auto">
+
+      <div class="text-center mb-10 sm:mb-14">
+        <p class="tracking-[0.22em] sm:tracking-[0.3em] text-xs sm:text-sm text-rose-400 font-bold mb-3">
+          ABOUT ME
+        </p>
+
+        <h2 class="imperfect-title text-3xl sm:text-4xl md:text-5xl font-black text-rose-500 tracking-tight">
+          A little bit about me
+        </h2>
+
+        <p class="mt-4 text-sm sm:text-base text-rose-700/70 max-w-2xl mx-auto">
+          This section is still simple because I want the website to feel personal,
+          not too corporate or overly perfect.
+        </p>
+
+        <p class="tiny-note mt-3">
+          still figuring stuff out btw
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+
+        <!-- Photo Card -->
+        <div class="handmade-card bg-white/70 border border-rose-100 shadow-xl shadow-rose-200/40 rounded-[2rem] p-4 sm:p-5 md:rotate-[-1deg]">
+          <div class="relative h-72 sm:h-96 md:h-[500px] rounded-[1.5rem] overflow-hidden border-4 border-white bg-rose-100">
+
+            <img 
+              src="src/IMG_20260121_062154.jpg"
+              alt="Photo of Ichiko"
+              class="w-full h-full object-cover object-center"
+            >
+
+            <div class="absolute inset-0 bg-gradient-to-t from-rose-900/30 via-transparent to-transparent"></div>
+
+            <div class="absolute bottom-4 left-4 right-4">
+              <div class="bg-white/80 backdrop-blur-md border border-white/70 rounded-2xl px-4 py-3 shadow-lg">
+                <p class="text-sm font-black text-rose-500">
+                  Ichiko
+                </p>
+                <p class="text-xs font-bold text-zinc-600">
+                  beginner dev / roblox creator
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Text Card -->
+        <div class="handmade-card bg-white/80 border border-rose-100 shadow-xl shadow-rose-200/40 rounded-[2rem] p-5 sm:p-8 text-left md:rotate-[1deg]">
+
+          <h3 class="text-2xl sm:text-3xl font-black text-zinc-800 mb-4 flex items-center gap-2 flex-wrap">
+            Hi, I'm Ichiko
+
+            <img 
+              src="src/love-hearts.gif" 
+              alt="heart" 
+              class="w-7 h-7 object-contain inline-block"
+            >
+          </h3>
+
+          <p class="text-zinc-600 leading-relaxed mb-4">
+            I'm a student and beginner developer who likes making things that feel
+            cute and cool. I enjoy learning web design, Roblox development,
+            and game development with Unity and Godot.
+          </p>
+
+          <p class="text-zinc-600 leading-relaxed mb-6">
+            I'm still improving, so my work may not be perfect yet, but I like making
+            projects that show my personality and progress.
+          </p>
+
+          <!-- ReA3 Badge -->
+          <a 
+            href="https://rea3.studio/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="block mb-7 rounded-[1.5rem] border border-rose-100 bg-gradient-to-br from-white via-rose-50 to-pink-100 p-5 shadow-md shadow-rose-200/40 hover:-translate-y-1 hover:shadow-xl hover:shadow-rose-200/60 transition duration-300"
+          >
+            <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+
+              <div class="w-14 h-14 rounded-2xl bg-white border-4 border-rose-100 overflow-hidden shadow-lg shadow-rose-200 shrink-0">
+                <img 
+                  src="src/REA3_FAVICON1-removebg-preview.png" 
+                  alt="ReA3 Studio icon" 
+                  class="w-full h-full object-cover"
+                >
+              </div>
+
+              <div>
+                <p class="text-xs font-black tracking-[0.25em] text-rose-400 mb-1">
+                  CO-FOUNDER
+                </p>
+
+                <h4 class="text-2xl font-black text-zinc-800 leading-tight flex items-center gap-2">
+                  ReA3 Studio
+                  <span class="text-sm text-rose-400">↗</span>
+                </h4>
+
+                <p class="mt-2 text-sm text-zinc-600 leading-relaxed">
+                  I help build and shape ReA3 Studio, a small creative team focused on
+                  making projects, learning together, and turning ideas into something real.
+                </p>
+              </div>
+
+            </div>
+          </a>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-7">
+            <div class="bg-rose-50 border border-rose-100 rounded-2xl p-4 rotate-[-1deg]">
+              <p class="text-2xl font-black text-rose-500">01</p>
+              <p class="text-sm text-zinc-600 font-bold">Web Design</p>
+            </div>
+
+            <div class="bg-rose-50 border border-rose-100 rounded-2xl p-4 rotate-[1deg]">
+              <p class="text-2xl font-black text-rose-500">02</p>
+              <p class="text-sm text-zinc-600 font-bold">Roblox Studio</p>
+            </div>
+
+            <div class="bg-rose-50 border border-rose-100 rounded-2xl p-4 rotate-[1deg]">
+              <p class="text-2xl font-black text-rose-500">03</p>
+              <p class="text-sm text-zinc-600 font-bold">Game Dev</p>
+            </div>
+
+            <div class="bg-rose-50 border border-rose-100 rounded-2xl p-4 rotate-[-1deg]">
+              <p class="text-2xl font-black text-rose-500">04</p>
+              <p class="text-sm text-zinc-600 font-bold">UI/UX</p>
+            </div>
+          </div>
+
+          <a class="imperfect-button btn rounded-full bg-rose-400 border-rose-400 text-white hover:bg-rose-500 hover:border-rose-500 shadow-lg shadow-rose-200">
+            More About Me
+          </a>
+
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- About to Projects Divider -->
+  <section class="relative bg-pink-100 px-4 sm:px-6 py-8 overflow-hidden">
+    <div class="max-w-6xl mx-auto">
+      <div class="relative rounded-[2rem] bg-white/70 border border-rose-100 shadow-xl shadow-rose-200/40 p-5 sm:p-6 overflow-hidden">
+
+        <div class="absolute -top-10 -left-10 w-32 h-32 bg-rose-200/70 rounded-full blur-2xl"></div>
+        <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-pink-300/50 rounded-full blur-2xl"></div>
+
+        <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+          <div>
+            <p class="text-xs font-black tracking-[0.28em] text-rose-400 mb-2">
+              NEXT SECTION
+            </p>
+
+            <h2 class="text-2xl sm:text-3xl font-black text-zinc-800">
+              Some things I've made
+            </h2>
+          </div>
+
+          <div class="flex gap-2">
+            <span class="w-3 h-3 rounded-full bg-rose-300"></span>
+            <span class="w-3 h-3 rounded-full bg-pink-300"></span>
+            <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="Projects" class="relative bg-pink-100 px-4 sm:px-6 py-16 sm:py-24 overflow-hidden">
+
+    <div class="absolute top-24 right-10 w-64 h-64 bg-rose-200/60 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-24 left-10 w-72 h-72 bg-pink-300/40 rounded-full blur-3xl"></div>
+
+    <div class="relative z-10 max-w-6xl mx-auto">
+
+      <div class="text-center mb-10 sm:mb-14">
+        <p class="tracking-[0.22em] sm:tracking-[0.3em] text-xs sm:text-sm text-rose-400 font-bold mb-3">
+          PROJECTS
+        </p>
+
+        <h2 class="imperfect-title text-3xl sm:text-4xl md:text-5xl font-black text-rose-500 tracking-tight">
+          My simple projects
+        </h2>
+
+        <p class="mt-4 text-sm sm:text-base text-rose-700/70 max-w-2xl mx-auto">
+          A few things I have made, practiced, or want to show here. They are simple,
+          but they show what I am learning and building.
+        </p>
+
+        <p class="tiny-note mt-3">
+          and more to come...
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- Project Card 1 -->
+        <div class="handmade-card group bg-white/80 border border-rose-100 rounded-[2rem] p-5 shadow-xl shadow-rose-200/40 hover:-translate-y-2 transition duration-300">
+          <div class="project-image-box mb-5">
+  <img 
+    src="src/Screenshot 2026-05-21 230103.png" 
+    alt="Portfolio Website preview"
+  >
+</div>
+
+          <div class="flex items-center justify-between gap-3 mb-3">
+            <p class="text-xs font-black tracking-[0.25em] text-rose-400">
+              WEBSITE
+            </p>
+
+            <span class="text-xs font-black text-rose-400 bg-rose-50 border border-rose-100 px-2 py-1 rounded-full">
+              current
+            </span>
+          </div>
+
+          <h3 class="text-2xl font-black text-zinc-800 mb-3">
+            Portfolio Website
+          </h3>
+
+          <p class="text-sm text-zinc-600 leading-relaxed mb-5">
+            A soft pink personal portfolio made with HTML, Tailwind, DaisyUI, and
+            small cute effects like sparkles and animated text.
+          </p>
+
+          <div class="flex flex-wrap gap-2 mb-5">
+            <span class="px-3 py-1 rounded-full bg-pink-50 text-xs font-bold text-rose-500">HTML</span>
+            <span class="px-3 py-1 rounded-full bg-pink-50 text-xs font-bold text-rose-500">Tailwind</span>
+            <span class="px-3 py-1 rounded-full bg-pink-50 text-xs font-bold text-rose-500">JS</span>
+          </div>
+
+          <a class="imperfect-button btn btn-sm rounded-full bg-rose-400 border-rose-400 text-white hover:bg-rose-500 hover:border-rose-500">
+            View Project
+          </a>
+        </div>
+
+        <!-- Project Card 2 -->
+        <div class="handmade-card group bg-white/80 border border-rose-100 rounded-[2rem] p-5 shadow-xl shadow-rose-200/40 hover:-translate-y-2 transition duration-300 md:mt-8">
+          <div class="project-image-box mb-5">
+  <img 
+    src="src/veritasBotBanner.png" 
+    alt="Roblox Project preview"
+  >
+</div>
+
+          <div class="flex items-center justify-between gap-3 mb-3">
+            <p class="text-xs font-black tracking-[0.25em] text-rose-400">
+              VERITAS
+            </p>
+
+            <span class="text-xs font-black text-rose-400 bg-rose-50 border border-rose-100 px-2 py-1 rounded-full">
+              discord bot
+            </span>
+          </div>
+
+          <h3 class="text-2xl font-black text-zinc-800 mb-3">
+            VERITAS
+          </h3>
+
+          <p class="text-sm text-zinc-600 leading-relaxed mb-5">
+            A discord bot that lets you create anonymous confessions.
+          </p>
+
+      
+
+          <a href="https://discord.com/oauth2/authorize?client_id=1492558366101213418&permissions=8&integration_type=0&scope=bot+applications.commands" class="imperfect-button btn btn-sm rounded-full bg-rose-400 border-rose-400 text-white hover:bg-rose-500 hover:border-rose-500">
+            View Project
+          </a>
+        </div>
+
+        <!-- Project Card 3 -->
+        <div class="handmade-card group bg-white/80 border border-rose-100 rounded-[2rem] p-5 shadow-xl shadow-rose-200/40 hover:-translate-y-2 transition duration-300">
+          <div class="project-image-box mb-5">
+  <img 
+    src="src/REA3_FAVICON1-removebg-preview.png" 
+    alt="ReA3 Studio Work preview"
+  >
+</div>
+
+          <div class="flex items-center justify-between gap-3 mb-3">
+            <p class="text-xs font-black tracking-[0.25em] text-rose-400">
+              STUDIO
+            </p>
+
+            <span class="text-xs font-black text-rose-400 bg-rose-50 border border-rose-100 px-2 py-1 rounded-full">
+              team
+            </span>
+          </div>
+
+          <h3 class="text-2xl font-black text-zinc-800 mb-3">
+            ReA3 Studio Work
+          </h3>
+
+          <p class="text-sm text-zinc-600 leading-relaxed mb-5">
+            Things connected to ReA3 Studio, like creative planning, web ideas,
+            and helping shape the studio identity.
+          </p>
+
+          <div class="flex flex-wrap gap-2 mb-5">
+            <span class="px-3 py-1 rounded-full bg-pink-50 text-xs font-bold text-rose-500">Team</span>
+            <span class="px-3 py-1 rounded-full bg-pink-50 text-xs font-bold text-rose-500">Branding</span>
+          </div>
+
+          <a href="https://rea3.studio/" target="_blank" rel="noopener noreferrer" class="imperfect-button btn btn-sm rounded-full bg-rose-400 border-rose-400 text-white hover:bg-rose-500 hover:border-rose-500">
+            Visit ReA3
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="Skills" class="relative bg-pink-100 px-4 sm:px-6 py-16 sm:py-24 overflow-hidden">
+
+    <div class="absolute top-20 left-10 w-64 h-64 bg-rose-200/60 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-20 right-10 w-72 h-72 bg-pink-300/40 rounded-full blur-3xl"></div>
+
+    <div class="relative z-10 max-w-6xl mx-auto">
+
+      <div class="text-center mb-10 sm:mb-14">
+        <p class="tracking-[0.22em] sm:tracking-[0.3em] text-xs sm:text-sm text-rose-400 font-bold mb-3">
+          SKILLS
+        </p>
+
+        <h2 class="imperfect-title text-3xl sm:text-4xl md:text-5xl font-black text-rose-500 tracking-tight">
+          Stuff I know, kinda
+        </h2>
+
+        <p class="mt-4 text-sm sm:text-base text-rose-700/70 max-w-2xl mx-auto">
+          Not gonna pretend I’m some expert yet. These are just the things I’ve been
+          learning and using while making websites, games, and random small projects.
+        </p>
+
+        <p class="tiny-note mt-3">
+          no fake 99% skill bars here
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+
+        <!-- Skill Card 1 -->
+        <div class="handmade-card bg-white/80 border border-rose-100 rounded-[2rem] p-5 sm:p-6 shadow-xl shadow-rose-200/40 md:rotate-[-1deg]">
+          <div class="mb-5">
+            <img 
+              src="src/html5-logo.webp" 
+              alt="web icon" 
+              class="w-12 h-12 object-contain mb-2"
+            >
+
+            <p class="text-xs font-black tracking-[0.25em] text-rose-400 mb-1">
+              WEB STUFF
+            </p>
+
+            <h3 class="text-2xl font-black text-zinc-800">
+              HTML, CSS, Tailwind
+            </h3>
+          </div>
+
+          <p class="text-sm text-zinc-600 leading-relaxed mb-5">
+            I’m mostly comfortable making page layouts, sections, cards, navbars,
+            buttons, and making things look cute. Still learning how to make code
+            cleaner though.
+          </p>
+
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 rounded-full bg-rose-50 border border-rose-100 text-xs font-bold text-rose-500">HTML</span>
+            <span class="px-3 py-1 rounded-full bg-rose-50 border border-rose-100 text-xs font-bold text-rose-500">CSS</span>
+            <span class="px-3 py-1 rounded-full bg-rose-50 border border-rose-100 text-xs font-bold text-rose-500">Tailwind</span>
+            <span class="px-3 py-1 rounded-full bg-rose-50 border border-rose-100 text-xs font-bold text-rose-500">DaisyUI</span>
+          </div>
+        </div>
+
+        <!-- Skill Card 2 -->
+        <div class="handmade-card bg-white/80 border border-rose-100 rounded-[2rem] p-5 sm:p-6 shadow-xl shadow-rose-200/40 lg:mt-8">
+          <div class="mb-5">
+            <img 
+              src="src/62f64963b3b8eda573996bdfb646729e818ef77b.png" 
+              alt="roblox icon" 
+              class="w-12 h-12 object-contain mb-2"
+            >
+
+            <p class="text-xs font-black tracking-[0.25em] text-rose-400 mb-1">
+              ROBLOX
+            </p>
+
+            <h3 class="text-2xl font-black text-zinc-800">
+              Roblox Studio
+            </h3>
+          </div>
+
+          <p class="text-sm text-zinc-600 leading-relaxed mb-5">
+            I like building stuff in Roblox Studio and messing around with ideas.
+            I’m still practicing scripting, but I understand the basics and I want
+            to get better at making actual playable things.
+          </p>
+
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 rounded-full bg-rose-50 border border-rose-100 text-xs font-bold text-rose-500">Roblox Studio</span>
+            <span class="px-3 py-1 rounded-full bg-rose-50 border border-rose-100 text-xs font-bold text-rose-500">Lua</span>
+            <span class="px-3 py-1 rounded-full bg-rose-50 border border-rose-100 text-xs font-bold text-rose-500">Building</span>
+          </div>
+        </div>
+
+        <!-- Skill Card 3 -->
+        <div class="handmade-card bg-white/80 border border-rose-100 rounded-[2rem] p-5 sm:p-6 shadow-xl shadow-rose-200/40 md:rotate-[1deg]">
+          <div class="mb-5">
+            <div class="flex gap-2 mb-2">
+              <img 
+                src="src/62e131df7fe3599fdd46ecb3.png" 
+                alt="unity icon"  
+                class="w-12 h-12 object-contain"
+              >
+
+              <img 
+                src="src/godot-logo.png" 
+                alt="godot icon" 
+                class="w-12 h-12 object-contain"
+              >
+            </div>
+
+            <p class="text-xs font-black tracking-[0.25em] text-rose-400 mb-1">
+              GAME DEV
+            </p>
+
+            <h3 class="text-2xl font-black text-zinc-800">
+              Unity & Godot
+            </h3>
+          </div>
+
+          <p class="text-sm text-zinc-600 leading-relaxed mb-5">
+            I’m still new to proper game development, but I’m interested in learning
+            how games are structured, how mechanics work, and how to turn ideas into
+            prototypes.
+          </p>
+
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 rounded-full bg-rose-50 border border-rose-100 text-xs font-bold text-rose-500">Unity</span>
+            <span class="px-3 py-1 rounded-full bg-rose-50 border border-rose-100 text-xs font-bold text-rose-500">Godot</span>
+            <span class="px-3 py-1 rounded-full bg-rose-50 border border-rose-100 text-xs font-bold text-rose-500">Prototypes</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-8 max-w-3xl mx-auto bg-white/70 border border-rose-100 rounded-[2rem] p-5 sm:p-6 shadow-lg shadow-rose-200/30 text-center rotate-[-1deg]">
+        <p class="text-sm sm:text-base text-zinc-600 leading-relaxed">
+          Basically: I’m still learning, but I like making things that feel personal.
+          My goal is to keep improving until my projects feel less like “practice”
+          and more like actual finished work.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Skills to Contact Divider -->
+  <section class="relative bg-pink-100 px-4 sm:px-6 py-8 overflow-hidden">
+    <div class="max-w-6xl mx-auto">
+      <div class="relative rounded-[2rem] bg-white/70 border border-rose-100 shadow-xl shadow-rose-200/40 p-5 sm:p-6 overflow-hidden">
+
+        <div class="absolute -top-10 -left-10 w-32 h-32 bg-rose-200/70 rounded-full blur-2xl"></div>
+        <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-pink-300/50 rounded-full blur-2xl"></div>
+
+        <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+          <div>
+            <p class="text-xs font-black tracking-[0.28em] text-rose-400 mb-2">
+              WANNA TALK?
+            </p>
+
+            <h2 class="text-2xl sm:text-3xl font-black text-zinc-800">
+              You can contact me here
+            </h2>
+          </div>
+
+          <div class="flex gap-2">
+            <span class="w-3 h-3 rounded-full bg-rose-300"></span>
+            <span class="w-3 h-3 rounded-full bg-pink-300"></span>
+            <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="Contact" class="relative bg-pink-100 px-4 sm:px-6 py-16 sm:py-24 overflow-hidden">
+
+    <div class="absolute top-20 right-10 w-64 h-64 bg-rose-200/60 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-20 left-10 w-72 h-72 bg-pink-300/40 rounded-full blur-3xl"></div>
+
+    <div class="relative z-10 max-w-6xl mx-auto">
+
+      <div class="text-center mb-10 sm:mb-14">
+        <p class="tracking-[0.22em] sm:tracking-[0.3em] text-xs sm:text-sm text-rose-400 font-bold mb-3">
+          CONTACT
+        </p>
+
+        <h2 class="imperfect-title text-3xl sm:text-4xl md:text-5xl font-black text-rose-500 tracking-tight">
+          Talk to me maybe
+        </h2>
+
+        <p class="mt-4 text-sm sm:text-base text-rose-700/70 max-w-2xl mx-auto">
+          This is where you can put your socials, email, or anything people can use
+          to reach you. Keep it simple and clear though you can also ask me out to play some games.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+
+        <!-- Contact Info Card -->
+        <div class="handmade-card bg-white/80 border border-rose-100 rounded-[2rem] p-5 sm:p-8 shadow-xl shadow-rose-200/40 md:rotate-[-1deg]">
+
+          <h3 class="text-2xl sm:text-3xl font-black text-zinc-800 mb-4">
+            Find me here
+          </h3>
+
+          <p class="text-sm sm:text-base text-zinc-600 leading-relaxed mb-7">
+            I’m still building my portfolio, but you can put your contact links here.
+            Replace the placeholder links with your real ones later.
+          </p>
+
+          <div class="space-y-4">
+
+            <a href="mailto:ichiko@rea3.studio" class="flex items-center gap-4 bg-rose-50 border border-rose-100 rounded-2xl p-4 hover:-translate-y-1 hover:shadow-md hover:shadow-rose-200/50 transition duration-300">
+              <div class="w-12 h-12 rounded-2xl bg-rose-400 text-white flex items-center justify-center font-black">
+                @
+              </div>
+
+              <div>
+                <p class="text-sm font-black text-zinc-800">Email</p>
+                <p class="text-sm text-zinc-600">ichiko@rea3.studio</p>
+              </div>
+            </a>
+
+            <a href="#" class="flex items-center gap-4 bg-rose-50 border border-rose-100 rounded-2xl p-4 hover:-translate-y-1 hover:shadow-md hover:shadow-rose-200/50 transition duration-300">
+              <div class="w-12 h-12 rounded-2xl bg-pink-300 text-white flex items-center justify-center font-black">
+                X
+              </div>
+
+              <div>
+                <p class="text-sm font-black text-zinc-800">X</p>
+                <p class="text-sm text-zinc-600">@kahgraa</p>
+              </div>
+            </a>
+
+            
+
+          </div>
+        </div>
+
+        <!-- Message Card -->
+        <div class="handmade-card bg-white/80 border border-rose-100 rounded-[2rem] p-5 sm:p-8 shadow-xl shadow-rose-200/40 md:rotate-[1deg] lg:mt-8">
+
+          <h3 class="text-2xl sm:text-3xl font-black text-zinc-800 mb-4">
+            Send a message
+          </h3>
+
+          <form class="space-y-4">
+
+            <div>
+              <label class="text-sm font-black text-rose-400 mb-2 block">
+                Name
+              </label>
+              <input 
+                type="text" 
+                placeholder="your name"
+                class="input input-bordered w-full rounded-2xl bg-rose-50 border-rose-100 focus:border-rose-300"
+              >
+            </div>
+
+            <div>
+              <label class="text-sm font-black text-rose-400 mb-2 block">
+                Email
+              </label>
+              <input 
+                type="email" 
+                placeholder="your email"
+                class="input input-bordered w-full rounded-2xl bg-rose-50 border-rose-100 focus:border-rose-300"
+              >
+            </div>
+
+            <div>
+              <label class="text-sm font-black text-rose-400 mb-2 block">
+                Message
+              </label>
+              <textarea 
+                placeholder="write something..."
+                class="textarea textarea-bordered w-full min-h-32 rounded-2xl bg-rose-50 border-rose-100 focus:border-rose-300"
+              ></textarea>
+            </div>
+
+            <button type="button" class="imperfect-button btn w-full rounded-full bg-rose-400 border-rose-400 text-white hover:bg-rose-500 hover:border-rose-500 shadow-lg shadow-rose-200">
+              Send Message
+            </button>
+
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Footer Marquee Full Width -->
+      <div class="relative left-1/2 right-1/2 -mx-[50vw] mt-14 mb-8 w-screen overflow-hidden bg-rose-400 border-y-4 border-pink-50 shadow-xl shadow-rose-200/50">
+        <div class="py-3 overflow-hidden whitespace-nowrap">
+          <div class="marquee-track inline-flex items-center">
+            <span>♡ THANKS FOR VISITING</span>
+            <span>♡ PORTFOLIO BY ICHIKO</span>
+            <span>♡ REA3 STUDIO</span>
+            <span>♡ WEB DESIGN</span>
+            <span>♡ GAME DEV</span>
+
+            <span>♡ THANKS FOR VISITING</span>
+            <span>♡ PORTFOLIO BY ICHIKO</span>
+            <span>♡ REA3 STUDIO</span>
+            <span>♡ WEB DESIGN</span>
+            <span>♡ GAME DEV</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-12 text-center">
+        <p class="text-sm text-rose-700/60 font-bold">
+          made with HTML, Tailwind, DaisyUI, and ya gitudeh
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    const changingText = document.getElementById("changingText");
+
+    const words = [
+      "Roblox Developer",
+      "Student",
+      "Unity & Godot Student",
+      "Ambitious Person"
+    ];
+
+    let index = 0;
+
+    setInterval(() => {
+      index = (index + 1) % words.length;
+
+      changingText.classList.remove("text-pop");
+      void changingText.offsetWidth;
+
+      changingText.textContent = words[index];
+      changingText.classList.add("text-pop");
+    }, 1000);
+
+    const heroSection = document.getElementById("Hero");
+    const customCursor = document.getElementById("customCursor");
+
+    let sparkleCooldown = false;
+    let isOverHero = false;
+
+    heroSection.addEventListener("mouseenter", () => {
+      isOverHero = true;
+      customCursor.style.display = "none";
+      document.body.classList.remove("custom-cursor-active");
+    });
+
+    heroSection.addEventListener("mouseleave", () => {
+      isOverHero = false;
+    });
+
+    document.addEventListener("mousemove", (event) => {
+      customCursor.style.left = event.clientX + "px";
+      customCursor.style.top = event.clientY + "px";
+
+      if (window.innerWidth <= 768) {
+        customCursor.style.display = "none";
+        document.body.classList.remove("custom-cursor-active");
+        return;
+      }
+
+      if (isOverHero) {
+        customCursor.style.display = "none";
+        document.body.classList.remove("custom-cursor-active");
+        return;
+      }
+
+      customCursor.style.display = "block";
+      document.body.classList.add("custom-cursor-active");
+
+      if (!sparkleCooldown) {
+        createSparkle(event.clientX, event.clientY);
+        sparkleCooldown = true;
+
+        setTimeout(() => {
+          sparkleCooldown = false;
+        }, 55);
+      }
+    });
+
+    function createSparkle(x, y) {
+      const sparkle = document.createElement("span");
+
+      const sparkles = ["✦", "✧", "♡", "₊", "˚"];
+      sparkle.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
+
+      sparkle.className = "sparkle";
+
+      const randomX = Math.random() * 28 - 14;
+      const randomY = Math.random() * 12;
+
+      sparkle.style.left = x + randomX + "px";
+      sparkle.style.top = y + randomY + 18 + "px";
+
+      document.body.appendChild(sparkle);
+
+      setTimeout(() => {
+        sparkle.remove();
+      }, 900);
+    }
+
+    const mobileMenuButton = document.getElementById("mobileMenuButton");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const burgerIcon = document.getElementById("burgerIcon");
+    const closeIcon = document.getElementById("closeIcon");
+
+    function toggleMobileMenu() {
+      mobileMenu.classList.toggle("hidden");
+      burgerIcon.classList.toggle("hidden");
+      closeIcon.classList.toggle("hidden");
+    }
+
+    function closeMobileMenu() {
+      mobileMenu.classList.add("hidden");
+      burgerIcon.classList.remove("hidden");
+      closeIcon.classList.add("hidden");
+    }
+
+    mobileMenuButton.addEventListener("click", (event) => {
+      event.stopPropagation();
+      toggleMobileMenu();
+    });
+
+    mobileMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", closeMobileMenu);
+    });
+
+    document.addEventListener("click", (event) => {
+      const clickedInsideMenu = mobileMenu.contains(event.target);
+      const clickedButton = mobileMenuButton.contains(event.target);
+
+      if (!clickedInsideMenu && !clickedButton) {
+        closeMobileMenu();
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,336 +1,336 @@
-<!doctype html>
-<html lang="en" data-theme="light">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!doctype html>
+  <html lang="en" data-theme="light">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Chiko Portfolio</title>
+      <title>Chiko Portfolio</title>
 
-    <!-- Tailwind + DaisyUI -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.tailwindcss.com"></script>
+      <!-- Tailwind + DaisyUI -->
+      <link
+        href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
+        rel="stylesheet"
+      />
+      <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
+      <!-- Font -->
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+      />
 
-    <style>
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        overflow-x: hidden;
-      }
-
-      .hero-bg {
-        background-image:
-          linear-gradient(
-            to bottom,
-            rgba(32, 18, 38, 0.5) 0%,
-            rgba(92, 42, 78, 0.48) 42%,
-            rgba(190, 86, 130, 0.52) 75%,
-            rgb(252, 231, 243) 100%
-          ),
-          url("your-image.jpg");
-
-        background-size: cover;
-        background-position: center;
-      }
-
-      .hero-title-box {
-        max-width: 100%;
-        transform: skewX(-6deg) scale(1);
-        transform-origin: center;
-        box-shadow: 8px 8px 0 rgba(255, 255, 255, 0.18);
-        transition:
-          transform 0.25s ease,
-          box-shadow 0.25s ease;
-      }
-
-      .hero-title-box:hover {
-        transform: skewX(-6deg) scale(1.08);
-        box-shadow: 12px 12px 0 rgba(255, 255, 255, 0.22);
-      }
-
-      .hero-title-box span {
-        display: block;
-        transform: skewX(6deg);
-      }
-
-      .text-pop {
-        animation: textPop 0.3s ease;
-      }
-
-      @keyframes textPop {
-        from {
-          opacity: 0;
-          transform: translateY(6px);
+      <style>
+        html {
+          scroll-behavior: smooth;
         }
 
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .top-text {
-        padding-top: 20px;
-      }
-
-      .marquee-section {
-        width: 100%;
-        overflow: hidden;
-      }
-
-      .marquee-wrap {
-        width: 100%;
-      }
-
-      .marquee-track {
-        width: max-content;
-        gap: 4rem;
-        padding-right: 4rem;
-        color: white;
-        font-weight: 900;
-        font-size: 1.1rem;
-        letter-spacing: 0.04em;
-        animation: marqueeMove 20s linear infinite;
-      }
-
-      .marquee-track span {
-        flex-shrink: 0;
-      }
-
-      @keyframes marqueeMove {
-        from {
-          transform: translateX(0);
+        body {
+          overflow-x: hidden;
         }
 
-        to {
-          transform: translateX(-50%);
-        }
-      }
+        .hero-bg {
+          background-image:
+            linear-gradient(
+              to bottom,
+              rgba(32, 18, 38, 0.5) 0%,
+              rgba(92, 42, 78, 0.48) 42%,
+              rgba(190, 86, 130, 0.52) 75%,
+              rgb(252, 231, 243) 100%
+            ),
+            url("your-image.jpg");
 
-      .custom-gif-cursor {
-        position: fixed;
-        width: 42px;
-        height: 42px;
-        pointer-events: none;
-        z-index: 9999;
-        transform: translate(-50%, -50%);
-        display: none;
-      }
-
-      .sparkle {
-        position: fixed;
-        pointer-events: none;
-        z-index: 9998;
-        font-size: 16px;
-        color: #fb7185;
-        animation: sparkleFall 0.9s ease-out forwards;
-        user-select: none;
-      }
-
-      @keyframes sparkleFall {
-        0% {
-          opacity: 1;
-          transform: translate(-50%, -50%) translateY(0) scale(1) rotate(0deg);
+          background-size: cover;
+          background-position: center;
         }
 
-        100% {
-          opacity: 0;
-          transform: translate(-50%, -50%) translateY(45px) scale(0.35)
-            rotate(80deg);
-        }
-      }
-
-      body.custom-cursor-active {
-        cursor: none;
-      }
-
-      body.custom-cursor-active a,
-      body.custom-cursor-active button,
-      body.custom-cursor-active input,
-      body.custom-cursor-active textarea {
-        cursor: none;
-      }
-
-      .handmade-card {
-        position: relative;
-      }
-
-      .handmade-card::before {
-        content: "";
-        position: absolute;
-        top: -10px;
-        left: 28px;
-        width: 58px;
-        height: 20px;
-        background: rgba(255, 255, 255, 0.55);
-        border: 1px solid rgba(244, 114, 182, 0.18);
-        transform: rotate(-4deg);
-        border-radius: 4px;
-        backdrop-filter: blur(4px);
-        z-index: 2;
-      }
-
-      .handmade-card:nth-child(2)::before {
-        left: auto;
-        right: 34px;
-        transform: rotate(5deg);
-      }
-
-      .handmade-card:nth-child(3)::before {
-        left: 44px;
-        transform: rotate(2deg);
-      }
-
-      .imperfect-title {
-        text-decoration: underline;
-        text-decoration-style: wavy;
-        text-decoration-thickness: 2px;
-        text-underline-offset: 8px;
-        text-decoration-color: rgba(251, 113, 133, 0.45);
-      }
-
-      .tiny-note {
-        font-size: 0.78rem;
-        color: rgba(190, 18, 60, 0.55);
-        font-weight: 900;
-        transform: rotate(-3deg);
-      }
-
-      .imperfect-button {
-        transform: rotate(-1deg);
-        transition: 0.25s ease;
-      }
-
-      .imperfect-button:hover {
-        transform: rotate(1deg) translateY(-2px);
-      }
-
-      .placeholder-text {
-        transform: rotate(-3deg);
-      }
-
-      /* section upgrades - keeps the same soft handmade style */
-      .mini-feature-card {
-        background: #fff7fb;
-        border: 1px solid #fecdd3;
-        border-radius: 1.4rem;
-        box-shadow: 5px 5px 0 rgba(251, 113, 133, 0.12);
-      }
-
-      .mini-feature-card:hover {
-        transform: translateY(-3px) rotate(-0.5deg);
-      }
-
-      .soft-progress {
-        height: 10px;
-        border-radius: 999px;
-        overflow: hidden;
-        background: #ffe4e6;
-        border: 1px solid #fecdd3;
-      }
-
-      .soft-progress > span {
-        display: block;
-        height: 100%;
-        border-radius: 999px;
-        background: #fb7185;
-      }
-
-      .project-filter-btn.active {
-        background: #fb7185 !important;
-        border-color: #fb7185 !important;
-        color: white !important;
-      }
-
-      .project-details {
-        display: none;
-      }
-
-      .project-details.is-open {
-        display: block;
-        animation: softOpen 0.25s ease;
-      }
-
-      @keyframes softOpen {
-        from {
-          opacity: 0;
-          transform: translateY(-6px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .copy-toast {
-        position: fixed;
-        right: 1rem;
-        bottom: 1rem;
-        z-index: 9999;
-        opacity: 0;
-        transform: translateY(12px);
-        pointer-events: none;
-        transition: 0.25s ease;
-      }
-
-      .copy-toast.show {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      @media (max-width: 768px) {
         .hero-title-box {
-          transform: skewX(-4deg) scale(1);
-          box-shadow: 5px 5px 0 rgba(255, 255, 255, 0.18);
+          max-width: 100%;
+          transform: skewX(-6deg) scale(1);
+          transform-origin: center;
+          box-shadow: 8px 8px 0 rgba(255, 255, 255, 0.18);
+          transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease;
         }
 
         .hero-title-box:hover {
-          transform: skewX(-4deg) scale(1.03);
-          box-shadow: 7px 7px 0 rgba(255, 255, 255, 0.22);
+          transform: skewX(-6deg) scale(1.08);
+          box-shadow: 12px 12px 0 rgba(255, 255, 255, 0.22);
         }
 
         .hero-title-box span {
-          transform: skewX(4deg);
+          display: block;
+          transform: skewX(6deg);
+        }
+
+        .text-pop {
+          animation: textPop 0.3s ease;
+        }
+
+        @keyframes textPop {
+          from {
+            opacity: 0;
+            transform: translateY(6px);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
 
         .top-text {
-          padding-top: 0;
-          letter-spacing: 0.22em;
+          padding-top: 20px;
+        }
+
+        .marquee-section {
+          width: 100%;
+          overflow: hidden;
+        }
+
+        .marquee-wrap {
+          width: 100%;
         }
 
         .marquee-track {
-          gap: 2rem;
-          padding-right: 2rem;
-          font-size: 0.95rem;
-          animation-duration: 16s;
+          width: max-content;
+          gap: 4rem;
+          padding-right: 4rem;
+          color: white;
+          font-weight: 900;
+          font-size: 1.1rem;
+          letter-spacing: 0.04em;
+          animation: marqueeMove 20s linear infinite;
         }
 
-        .sparkle {
-          display: none;
+        .marquee-track span {
+          flex-shrink: 0;
+        }
+
+        @keyframes marqueeMove {
+          from {
+            transform: translateX(0);
+          }
+
+          to {
+            transform: translateX(-50%);
+          }
         }
 
         .custom-gif-cursor {
-          display: none !important;
+          position: fixed;
+          width: 42px;
+          height: 42px;
+          pointer-events: none;
+          z-index: 9999;
+          transform: translate(-50%, -50%);
+          display: none;
+        }
+
+        .sparkle {
+          position: fixed;
+          pointer-events: none;
+          z-index: 9998;
+          font-size: 16px;
+          color: #fb7185;
+          animation: sparkleFall 0.9s ease-out forwards;
+          user-select: none;
+        }
+
+        @keyframes sparkleFall {
+          0% {
+            opacity: 1;
+            transform: translate(-50%, -50%) translateY(0) scale(1) rotate(0deg);
+          }
+
+          100% {
+            opacity: 0;
+            transform: translate(-50%, -50%) translateY(45px) scale(0.35)
+              rotate(80deg);
+          }
         }
 
         body.custom-cursor-active {
-          cursor: auto;
+          cursor: none;
         }
 
         body.custom-cursor-active a,
+        body.custom-cursor-active button,
+        body.custom-cursor-active input,
+        body.custom-cursor-active textarea {
+          cursor: none;
+        }
+
+        .handmade-card {
+          position: relative;
+        }
+
+        .handmade-card::before {
+          content: "";
+          position: absolute;
+          top: -10px;
+          left: 28px;
+          width: 58px;
+          height: 20px;
+          background: rgba(255, 255, 255, 0.55);
+          border: 1px solid rgba(244, 114, 182, 0.18);
+          transform: rotate(-4deg);
+          border-radius: 4px;
+          backdrop-filter: blur(4px);
+          z-index: 2;
+        }
+
+        .handmade-card:nth-child(2)::before {
+          left: auto;
+          right: 34px;
+          transform: rotate(5deg);
+        }
+
+        .handmade-card:nth-child(3)::before {
+          left: 44px;
+          transform: rotate(2deg);
+        }
+
+        .imperfect-title {
+          text-decoration: underline;
+          text-decoration-style: wavy;
+          text-decoration-thickness: 2px;
+          text-underline-offset: 8px;
+          text-decoration-color: rgba(251, 113, 133, 0.45);
+        }
+
+        .tiny-note {
+          font-size: 0.78rem;
+          color: rgba(190, 18, 60, 0.55);
+          font-weight: 900;
+          transform: rotate(-3deg);
+        }
+
+        .imperfect-button {
+          transform: rotate(-1deg);
+          transition: 0.25s ease;
+        }
+
+        .imperfect-button:hover {
+          transform: rotate(1deg) translateY(-2px);
+        }
+
+        .placeholder-text {
+          transform: rotate(-3deg);
+        }
+
+        /* section upgrades - keeps the same soft handmade style */
+        .mini-feature-card {
+          background: #fff7fb;
+          border: 1px solid #fecdd3;
+          border-radius: 1.4rem;
+          box-shadow: 5px 5px 0 rgba(251, 113, 133, 0.12);
+        }
+
+        .mini-feature-card:hover {
+          transform: translateY(-3px) rotate(-0.5deg);
+        }
+
+        .soft-progress {
+          height: 10px;
+          border-radius: 999px;
+          overflow: hidden;
+          background: #ffe4e6;
+          border: 1px solid #fecdd3;
+        }
+
+        .soft-progress > span {
+          display: block;
+          height: 100%;
+          border-radius: 999px;
+          background: #fb7185;
+        }
+
+        .project-filter-btn.active {
+          background: #fb7185 !important;
+          border-color: #fb7185 !important;
+          color: white !important;
+        }
+
+        .project-details {
+          display: none;
+        }
+
+        .project-details.is-open {
+          display: block;
+          animation: softOpen 0.25s ease;
+        }
+
+        @keyframes softOpen {
+          from {
+            opacity: 0;
+            transform: translateY(-6px);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .copy-toast {
+          position: fixed;
+          right: 1rem;
+          bottom: 1rem;
+          z-index: 9999;
+          opacity: 0;
+          transform: translateY(12px);
+          pointer-events: none;
+          transition: 0.25s ease;
+        }
+
+        .copy-toast.show {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+          .hero-title-box {
+            transform: skewX(-4deg) scale(1);
+            box-shadow: 5px 5px 0 rgba(255, 255, 255, 0.18);
+          }
+
+          .hero-title-box:hover {
+            transform: skewX(-4deg) scale(1.03);
+            box-shadow: 7px 7px 0 rgba(255, 255, 255, 0.22);
+          }
+
+          .hero-title-box span {
+            transform: skewX(4deg);
+          }
+
+          .top-text {
+            padding-top: 0;
+            letter-spacing: 0.22em;
+          }
+
+          .marquee-track {
+            gap: 2rem;
+            padding-right: 2rem;
+            font-size: 0.95rem;
+            animation-duration: 16s;
+          }
+
+          .sparkle {
+            display: none;
+          }
+
+          .custom-gif-cursor {
+            display: none !important;
+          }
+
+          body.custom-cursor-active {
+            cursor: auto;
+          }
+
+          body.custom-cursor-active a,
         body.custom-cursor-active button,
         body.custom-cursor-active input,
         body.custom-cursor-active textarea {
@@ -1379,37 +1379,118 @@
                   href="mailto:ichiko@rea3.studio"
                   class="flex items-center gap-4"
                 >
-                <div
-                  class="w-12 h-12 rounded-2xl bg-rose-400 text-white flex items-center justify-center font-black"
-                >
-                  @
-                </div>
+                  <div
+                    class="w-12 h-12 rounded-2xl bg-rose-400 text-white flex items-center justify-center font-black"
+                  >
+                    @
+                  </div>
 
-                <div>
-                  <p class="text-sm font-black text-zinc-800">Email</p>
-                  <p class="text-sm text-zinc-600">ichiko@rea3.studio</p>
-                </div>
+                  <div>
+                    <p class="text-sm font-black text-zinc-800">Email</p>
+                    <p class="text-sm text-zinc-600">ichiko@rea3.studio</p>
+                  </div>
                 </a>
-                <button id="copyEmailButton" type="button" class="imperfect-button btn btn-xs rounded-full bg-white border-rose-200 text-rose-500 hover:bg-rose-100">
+
+                <button
+                  id="copyEmailButton"
+                  type="button"
+                  class="imperfect-button btn btn-xs rounded-full bg-white border-rose-200 text-rose-500 hover:bg-rose-100"
+                >
                   copy email
                 </button>
               </div>
 
-              <a
-                href="#"
-                class="flex items-center gap-4 bg-rose-50 border border-rose-100 rounded-2xl p-4 hover:-translate-y-1 hover:shadow-md hover:shadow-rose-200/50 transition duration-300"
-              >
-                <div
-                  class="w-12 h-12 rounded-2xl bg-pink-300 text-white flex items-center justify-center font-black"
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <a
+                  href="https://www.roblox.com/users/1440948209/profile"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-4 bg-rose-50 border border-rose-100 rounded-2xl p-4 hover:-translate-y-1 hover:shadow-md hover:shadow-rose-200/50 transition duration-300"
                 >
-                  X
-                </div>
+                  <div
+                    class="w-12 h-12 rounded-2xl bg-rose-400 text-white flex items-center justify-center font-black overflow-hidden p-2"
+                  >
+                    <img src="src/Roblox_Corporation_2025_logo.svg.png" alt="Roblox logo" class="w-full h-full object-contain">
+                  </div>
 
-                <div>
-                  <p class="text-sm font-black text-zinc-800">X</p>
-                  <p class="text-sm text-zinc-600">@kahgraa</p>
-                </div>
-              </a>
+                  <div>
+                    <p class="text-sm font-black text-zinc-800">Roblox</p>
+                    <p class="text-sm text-zinc-600">coolboi2332133w3</p>
+                  </div>
+                </a>
+
+                <a
+                  href="https://www.youtube.com/@ichiro8058"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-4 bg-rose-50 border border-rose-100 rounded-2xl p-4 hover:-translate-y-1 hover:shadow-md hover:shadow-rose-200/50 transition duration-300"
+                >
+                  <div
+                    class="w-12 h-12 rounded-2xl bg-red-400 text-white flex items-center justify-center font-black"
+                  >
+                    <img src="src/logo-youtube-png-clipart-11.png">
+                  </div>
+
+                  <div>
+                    <p class="text-sm font-black text-zinc-800">YouTube</p>
+                    
+                  </div>
+                </a>
+
+                <a
+                  href="https://www.instagram.com/ichi.koou/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-4 bg-rose-50 border border-rose-100 rounded-2xl p-4 hover:-translate-y-1 hover:shadow-md hover:shadow-rose-200/50 transition duration-300"
+                >
+                  <div
+                    class="w-12 h-12 rounded-2xl bg-white-400 text-white flex items-center justify-center font-black"
+                  >
+                    <img src="src/1658588965instagram-logo-png-transparent-background.webp">
+                  </div>
+
+                  <div>
+                    <p class="text-sm font-black text-zinc-800">Instagram</p>
+                    
+                  </div>
+                </a>
+
+                <a
+                  href="https://x.com/kahgraa"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-4 bg-rose-50 border border-rose-100 rounded-2xl p-4 hover:-translate-y-1 hover:shadow-md hover:shadow-rose-200/50 transition duration-300"
+                >
+                  <div
+                    class="w-12 h-12 rounded-2xl bg-zinc-800 text-white flex items-center justify-center font-black"
+                  >
+                    <img src="src/twitter-brand-new-logo-3-d-with-new-x-shaped-graphic-of-the-world-s-most-popular-social-media-free-png.webp">
+                  </div>
+
+                  <div>
+                    <p class="text-sm font-black text-zinc-800">Twitter / X</p>
+                    
+                  </div>
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/in/ichiko-adiva-raisha-64077a250/?isSelfProfile=true"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-4 bg-rose-50 border border-rose-100 rounded-2xl p-4 hover:-translate-y-1 hover:shadow-md hover:shadow-rose-200/50 transition duration-300 sm:col-span-2"
+                >
+                  <div
+                    class="w-12 h-12 rounded-2xl bg-white-400 text-white flex items-center justify-center font-black"
+                  >
+                    <img src="src/official-linkedin-logo----17.png">
+                  </div>
+
+                  <div>
+                    <p class="text-sm font-black text-zinc-800">LinkedIn</p>
+                   
+                  </div>
+                </a>
+              </div>
             </div>
 
             <div class="mt-6 mini-feature-card p-4 rotate-[1deg] transition duration-300">

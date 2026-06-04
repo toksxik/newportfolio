@@ -31,19 +31,45 @@
         }
 
         .hero-bg {
-          background-image:
-            linear-gradient(
-              to bottom,
-              rgba(32, 18, 38, 0.5) 0%,
-              rgba(92, 42, 78, 0.48) 42%,
-              rgba(190, 86, 130, 0.52) 75%,
-              rgb(252, 231, 243) 100%
-            ),
-            url("src/bg.png");
+  position: relative;
+  background-image:
+    linear-gradient(
+      to bottom,
+      rgba(32, 18, 38, 0.5) 0%,
+      rgba(92, 42, 78, 0.48) 42%,
+      rgba(190, 86, 130, 0.52) 75%,
+      rgb(252, 231, 243) 100%
+    ),
+    url("src/bg.png");
 
-          background-size: cover;
-          background-position: center;
-        }
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(
+      to bottom,
+      rgba(32, 18, 38, 0.5) 0%,
+      rgba(92, 42, 78, 0.48) 42%,
+      rgba(190, 86, 130, 0.52) 75%,
+      rgb(252, 231, 243) 100%
+    ),
+    var(--next-hero-bg);
+
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 0;
+}
+
+.hero-bg.is-changing::before {
+  opacity: 1;
+}
 
         .hero-title-box {
           max-width: 100%;
@@ -450,32 +476,37 @@
               id="mobileMenu"
               class="menu menu-sm absolute left-0 top-14 z-[60] hidden p-3 shadow-xl bg-white rounded-2xl w-52 border border-pink-100"
             >
-              <li><a href="#">Home</a></li>
-              <li><a href="#About">About</a></li>
-              <li><a href="#Projects">Projects</a></li>
-              <li><a href="#Skills">Skills</a></li>
-              <li><a href="#Contact">Contact</a></li>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="index.html#About">About</a></li>
+              <li><a href="index.html#Projects">Projects</a></li>
+              <li><a href="index.html#Skills">Skills</a></li>
+              <li><a href="blogs.html" class="text-rose-500 font-black">Blogs</a></li>
+              <li><a href="index.html#Contact">Contact</a></li>
             </ul>
           </div>
 
-          <a class="text-xl sm:text-2xl font-bold tracking-tight text-rose-500">
+          <a
+            href="index.html"
+            class="text-xl sm:text-2xl font-bold tracking-tight text-rose-500"
+          >
             ICHIKO
           </a>
         </div>
 
         <div class="navbar-center hidden md:flex">
           <ul class="menu menu-horizontal px-1 text-sm font-semibold">
-            <li><a href="#">Home</a></li>
-            <li><a href="#About">About</a></li>
-            <li><a href="#Projects">Projects</a></li>
-            <li><a href="#Skills">Skills</a></li>
-            <li><a href="#Contact">Contact</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#About">About</a></li>
+            <li><a href="index.html#Projects">Projects</a></li>
+            <li><a href="index.html#Skills">Skills</a></li>
+            <li><a href="blogs.html" class="text-rose-500 font-black">Blogs</a></li>
+            <li><a href="index.html#Contact">Contact</a></li>
           </ul>
         </div>
 
         <div class="navbar-end">
           <a
-            href="#Contact"
+            href="index.html#Contact"
             class="btn btn-sm sm:btn-md rounded-full btn-outline border-rose-400 text-rose-500 hover:bg-rose-400 hover:border-rose-400 hover:text-white"
           >
             Let's Talk
@@ -484,15 +515,16 @@
       </div>
     </nav>
 
+
     <!-- Hero Section -->
     <section
       id="Hero"
       class="hero-bg relative min-h-screen flex items-center justify-center text-center px-4 sm:px-6 py-28 sm:py-32 overflow-hidden"
     >
-      <div class="absolute inset-0 bg-zinc-950/10"></div>
+      <div class="absolute inset-0 bg-zinc-950/10 z-[1]"></div>
       <div
-        class="absolute top-32 left-1/2 -translate-x-1/2 w-80 h-80 bg-pink-400/30 rounded-full blur-3xl"
-      ></div>
+  class="absolute top-32 left-1/2 -translate-x-1/2 w-80 h-80 bg-pink-400/30 rounded-full blur-3xl z-[1]"
+></div>
 
       <div class="relative z-10 w-full max-w-3xl text-white mt-6 sm:mt-12">
         <p
@@ -759,15 +791,9 @@
 
             <!-- New About Feature: mini scrapbook facts -->
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-7">
-              <div class="mini-feature-card p-4 transition duration-300 rotate-[-1deg]">
-                <p class="text-xs font-black tracking-[0.2em] text-rose-400 mb-1">THEME</p>
-                <p class="text-sm font-bold text-zinc-700">building cute things with suspicious ambition</p>
-              </div>
+              
 
-              <div class="mini-feature-card p-4 transition duration-300 rotate-[1deg]">
-                <p class="text-xs font-black tracking-[0.2em] text-rose-400 mb-1">FOCUS</p>
-                <p class="text-sm font-bold text-zinc-700">web polish, Roblox ideas, and game prototypes</p>
-              </div>
+              
 
             </div>
 
@@ -1670,6 +1696,43 @@
       }, 1000);
 
       const heroSection = document.getElementById("Hero");
+      const heroImages = [
+  "src/bg.png",
+  "src/bg2.png",
+  "src/bg3.png",
+
+];
+
+let currentHeroImage = 0;
+let nextHeroImage = 1;
+
+setInterval(() => {
+  heroSection.style.setProperty(
+    "--next-hero-bg",
+    `url("${heroImages[nextHeroImage]}")`
+  );
+
+  heroSection.classList.add("is-changing");
+
+  setTimeout(() => {
+    currentHeroImage = nextHeroImage;
+
+    heroSection.style.backgroundImage = `
+      linear-gradient(
+        to bottom,
+        rgba(32, 18, 38, 0.5) 0%,
+        rgba(92, 42, 78, 0.48) 42%,
+        rgba(190, 86, 130, 0.52) 75%,
+        rgb(252, 231, 243) 100%
+      ),
+      url("${heroImages[currentHeroImage]}")
+    `;
+
+    heroSection.classList.remove("is-changing");
+
+    nextHeroImage = (currentHeroImage + 1) % heroImages.length;
+  }, 1000);
+}, 3000);
       const customCursor = document.getElementById("customCursor");
 
       let sparkleCooldown = false;

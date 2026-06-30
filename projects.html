@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Projects | Ichiko</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #0d1117;
+        --surface: #161b22;
+        --text: #f8fafc;
+        --muted: #8b949e;
+        --accent: rgb(144, 144, 144);
+        --border: rgba(255, 255, 255, 0.08);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Inter, sans-serif;
+
+        color: var(--text);
+
+        background: radial-gradient(
+          circle at top,
+          #1b2230 0%,
+          #11161f 35%,
+          #0d1117 75%
+        );
+      }
+
+      body::before {
+        content: "";
+
+        position: fixed;
+
+        inset: 0;
+
+        pointer-events: none;
+
+        background: radial-gradient(
+          circle,
+          transparent 40%,
+          rgba(0, 0, 0, 0.25) 100%
+        );
+
+        z-index: -1;
+      }
+
+      #tsparticles {
+        position: fixed;
+
+        inset: 0;
+
+        z-index: -2;
+
+        pointer-events: none;
+      }
+
+      .container {
+        width: min(1100px, 92%);
+
+        margin: auto;
+
+        padding: 80px 0;
+      }
+
+      .back {
+        display: inline-block;
+
+        color: var(--muted);
+
+        text-decoration: none;
+
+        margin-bottom: 40px;
+
+        opacity: 0;
+
+        animation: slideDown 0.7s ease forwards;
+      }
+
+      .back:hover {
+        color: white;
+      }
+
+      h1 {
+        font-size: 3rem;
+
+        margin-bottom: 12px;
+
+        opacity: 0;
+
+        animation: slideUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+
+        animation-delay: 0.15s;
+      }
+
+      .subtitle {
+        color: var(--muted);
+
+        margin-bottom: 45px;
+
+        line-height: 1.8;
+
+        opacity: 0;
+
+        animation: slideUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+
+        animation-delay: 0.3s;
+      }
+
+      .grid {
+        display: grid;
+
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+
+        gap: 28px;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.035);
+
+        backdrop-filter: blur(18px);
+
+        border: 1px solid var(--border);
+
+        border-radius: 20px;
+
+        overflow: hidden;
+
+        text-decoration: none;
+
+        color: inherit;
+
+        transition: 0.35s;
+
+        opacity: 0;
+
+        box-shadow:
+          0 25px 60px rgba(0, 0, 0, 0.35),
+          0 0 80px rgba(217, 70, 239, 0.05);
+
+        animation: cardIntro 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+
+      .card:nth-child(1) {
+        animation-delay: 0.45s;
+      }
+      .card:nth-child(2) {
+        animation-delay: 0.6s;
+      }
+      .card:nth-child(3) {
+        animation-delay: 0.75s;
+      }
+
+      .card:hover {
+        transform: translateY(-8px);
+
+        border-color: rgba(255, 255, 255, 0.14);
+      }
+
+      .card img {
+        width: 100%;
+
+        height: 220px;
+
+        object-fit: cover;
+
+        display: block;
+
+        transition: 0.4s;
+      }
+
+      .card:hover img {
+        transform: scale(1.05);
+      }
+
+      .content {
+        padding: 24px;
+      }
+
+      .tag {
+        color: var(--accent);
+
+        font-size: 0.75rem;
+
+        letter-spacing: 0.18em;
+
+        font-weight: 700;
+      }
+
+      .content h2 {
+        margin: 14px 0;
+      }
+
+      .content p {
+        color: var(--muted);
+
+        line-height: 1.8;
+      }
+
+      .view {
+        display: inline-block;
+
+        margin-top: 20px;
+
+        color: var(--accent);
+
+        font-weight: 600;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+
+          transform: translateY(-18px);
+        }
+
+        to {
+          opacity: 1;
+
+          transform: none;
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+
+          transform: translateY(30px);
+        }
+
+        to {
+          opacity: 1;
+
+          transform: none;
+        }
+      }
+
+      @keyframes cardIntro {
+        from {
+          opacity: 0;
+
+          transform: translateY(40px);
+        }
+
+        to {
+          opacity: 1;
+
+          transform: none;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .container {
+          padding: 60px 0;
+        }
+
+        .card img {
+          height: 190px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="tsparticles"></div>
+
+    <div class="container">
+      <a href="index.html" class="back">← Home</a>
+
+
+
+      <div class="grid">
+        <a href="https://www.rea3.studio/" class="card">
+          <img src="REA3_FAVICON1-removebg-preview.png" alt="ReA3 Studio Portal" />
+
+          <div class="content">
+            <div class="tag">WEB DEVELOPMENT</div>
+
+            <h2>ReA3 Studio Portal</h2>
+
+            <p>
+              ReA3 Studio Official Website
+            </p>
+
+            <span class="view">View Project →</span>
+          </div>
+        </a>
+
+        <a href="https://www.huruftimbulmurah.com/" class="card">
+          <img src="afagvadvagas.png" alt="Banana Hunt" />
+
+          <div class="content">
+            <div class="tag">Website Commission</div>
+
+            <h2>Huruf Timbul & Neonbox</h2>
+
+            <p>
+              A website commission i did
+            </p>
+
+            <span class="view">View Project →</span>
+          </div>
+        </a>
+
+        <a href="https://discord.com/oauth2/authorize?client_id=1492558366101213418&permissions=8&integration_type=0&scope=bot+applications.commands" class="card">
+          <img src="veritasBotBanner.png" alt="Veritas" />
+
+          <div class="content">
+            <div class="tag">Discord Bot</div>
+
+            <h2>Veritas</h2>
+
+            <p>
+              An anonymous confessions discord bot developed by ReA3 Studio
+            </p>
+
+            <span class="view">View Project →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-snow@3/tsparticles.preset.snow.bundle.min.js"></script>
+
+    <script>
+      (async () => {
+        await loadSnowPreset(tsParticles);
+
+        await tsParticles.load({
+          id: "tsparticles",
+
+          options: {
+            preset: "snow",
+
+            background: {
+              color: {
+                value: "transparent",
+              },
+            },
+
+            fullScreen: {
+              enable: true,
+              zIndex: -2,
+            },
+
+            particles: {
+              number: {
+                value: 120,
+              },
+              move: {
+                speed: 1.2,
+              },
+              size: {
+                value: {
+                  min: 1,
+                  max: 4,
+                },
+              },
+              opacity: {
+                value: {
+                  min: 0.3,
+                  max: 0.9,
+                },
+              },
+            },
+          },
+        });
+      })();
+    </script>
+  </body>
+</html>

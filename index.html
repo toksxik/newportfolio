@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Ichiko | Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #0d1117;
+        --surface: #161b22;
+
+        --text: #f8fafc;
+        --muted: #8b949e;
+
+        --accent: #d946ef;
+
+        --border: rgba(255, 255, 255, 0.06);
+        --border-hover: rgba(255, 255, 255, 0.14);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: radial-gradient(
+          circle at top,
+          #1b2230 0%,
+          #11161f 30%,
+          #0d1117 75%
+        );
+        color: var(--text);
+        font-family: "Inter", sans-serif;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(500px, 90%);
+        margin: auto;
+        padding: 4rem 0;
+      }
+
+      .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .hero-avatar {
+        box-shadow:
+          0 25px 60px rgba(0, 0, 0, 0.45),
+          0 0 90px rgba(217, 70, 239, 0.12);
+
+        width: 170px;
+        height: 170px;
+
+        border-radius: 28px;
+
+        overflow: hidden;
+
+        border: 1px solid var(--border);
+
+        background: rgba(22, 27, 34, 0.88);
+        backdrop-filter: blur(14px);
+
+        transition: 0.25s;
+
+        animation:
+          avatarIntro 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+          float 5s ease-in-out infinite;
+
+        animation-delay: 0s, 0.8s;
+      }
+
+      .hero-avatar:hover {
+        transform: translateY(-6px) scale(1.02);
+
+        border-color: var(--border-hover);
+      }
+
+      .hero-avatar img {
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+      }
+     .hero-name{
+    margin-top:2rem;
+
+    font-size:clamp(3rem,8vw,5rem);
+    font-weight:800;
+    letter-spacing:-3px;
+
+    color:#fff;
+
+    text-shadow:
+        0 0 8px rgba(255,255,255,.18),
+        0 0 20px rgba(217,70,239,.20),
+        0 0 40px rgba(217,70,239,.08);
+
+    opacity:0;
+
+    animation:nameIntro .8s cubic-bezier(.22,1,.36,1) forwards;
+    animation-delay:.35s;
+}
+
+      .hero-name::after {
+        content: "";
+      }
+
+      .hero-smalltxt {
+        color: var(--muted);
+
+        margin-top: 0.6rem;
+
+        font-size: 1rem;
+
+        font-weight: 500;
+
+        min-height: 24px;
+
+        opacity: 0;
+
+        animation: nameIntro 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+
+        animation-delay: 0.45s;
+      }
+      .hero-smalltxt::after {
+        content: "|";
+        margin-left: 4px;
+        animation: blink 0.8s infinite;
+      }
+
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+      .directory-btn {
+        margin-top: 2rem;
+
+        padding: 14px 22px;
+
+        border: none;
+
+        border-radius: 16px;
+
+        background: rgba(22, 27, 34, 0.88);
+        backdrop-filter: blur(14px);
+
+        color: white;
+
+        font-size: 0.95rem;
+
+        cursor: pointer;
+
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+
+        transition: 0.25s;
+
+        opacity: 0;
+
+        animation: buttonIntro 0.8s ease forwards;
+
+        animation-delay: 0.7s;
+      }
+
+      .directory-btn:hover {
+        background: #414754;
+      }
+
+      #directoryArrow {
+        transition: 0.25s;
+      }
+
+      .directory {
+        width: 280px;
+
+        max-height: 0;
+
+        overflow: hidden;
+
+        opacity: 0;
+
+        transition: 0.35s;
+      }
+
+      .directory.open {
+        max-height: 400px;
+
+        opacity: 1;
+
+        margin-top: 1rem;
+      }
+
+      .directory a {
+        display: block;
+
+        margin-top: 0.75rem;
+
+        padding: 14px 18px;
+
+        background: var(--surface);
+
+        border: 1px solid var(--border);
+
+        border-radius: 14px;
+
+        transition: 0.25s;
+      }
+
+      .directory a:hover {
+        transform: translateX(6px);
+
+        border-color: var(--border-hover);
+
+        background: #414754;
+      }
+
+      @media (max-width: 768px) {
+        .hero-name {
+          font-size: 3rem;
+        }
+      }
+      @keyframes avatarIntro {
+        from {
+          opacity: 0;
+          transform: translateY(-35px) scale(0.92);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      @keyframes nameIntro {
+        from {
+          opacity: 0;
+          transform: translateY(25px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes buttonIntro {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+
+        50% {
+          transform: translateY(-10px);
+        }
+
+        100% {
+          transform: translateY(0px);
+        }
+      }
+      #tsparticles {
+        position: fixed;
+
+        inset: 0;
+
+        z-index: -1;
+
+        pointer-events: none;
+      }
+      body::before {
+        content: "";
+
+        position: fixed;
+
+        inset: 0;
+
+        pointer-events: none;
+
+        background: radial-gradient(
+          circle,
+          transparent 35%,
+          rgba(0, 0, 0, 0.18) 100%
+        );
+      }
+      .directory-btn,
+      .directory a {
+        background: rgba(255, 255, 255, 0.035);
+
+        backdrop-filter: blur(18px);
+
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="tsparticles"></div>
+    <div class="container">
+      <header class="hero">
+        <div class="hero-avatar">
+          <img src="ssvsdvsevg.jpeg" alt="Ichiko" />
+        </div>
+
+        <h1 class="hero-name">ichiko</h1>
+        <h3 class="hero-smalltxt" id="changingText"></h3>
+        <button class="directory-btn" id="directoryBtn">
+          More about me
+          <span id="directoryArrow">+</span>
+        </button>
+
+        <div class="directory" id="directory">
+          <a href="projects.html">Projects</a>
+          <a href="about.html">About</a>
+        </div>
+
+        <button class="directory-btn" id="socialBtn">
+          Socials
+          <span id="socialArrow">+</span>
+        </button>
+
+        <div class="directory" id="socialDirectory">
+          <a href="https://github.com/toksxik" target="_blank"> GitHub </a>
+
+          <a href="https://x.com/kahgraa" target="_blank"> X / Twitter </a>
+
+          <a href="https://www.linkedin.com/in/ichiko-adiva-raisha-64077a250/" target="_blank">
+            LinkedIn
+          </a>
+        </div>
+        <button class="directory-btn" id="contactBtn">
+          Contact & Support
+          <span id="contactArrow">+</span>
+        </button>
+
+        <div class="directory" id="contactDirectory">
+          <a href="mailto:ichikoadivaraisha@gmail.com"> Email </a>
+
+          <a href="https://ko-fi.com/ichiko805" target="_blank"> Kofi </a>
+
+          <a href="https://forms.gle/yourform" target="_blank">
+            Contact Form (Unfinished)
+          </a>
+        </div>
+      </header>
+    </div>
+
+    <script>
+      // More About Me
+      const button = document.getElementById("directoryBtn");
+      const directory = document.getElementById("directory");
+      const arrow = document.getElementById("directoryArrow");
+
+      button.addEventListener("click", () => {
+        directory.classList.toggle("open");
+
+        arrow.textContent = directory.classList.contains("open") ? "−" : "+";
+      });
+
+      // Socials
+      const socialBtn = document.getElementById("socialBtn");
+      const socialDirectory = document.getElementById("socialDirectory");
+      const socialArrow = document.getElementById("socialArrow");
+
+      socialBtn.addEventListener("click", () => {
+        socialDirectory.classList.toggle("open");
+
+        socialArrow.textContent = socialDirectory.classList.contains("open")
+          ? "−"
+          : "+";
+      });
+      const texts = ["Roblox Developer", "Student", "Actively Studying"];
+
+      const changingText = document.getElementById("changingText");
+
+      let textIndex = 0;
+      let charIndex = 0;
+      let deleting = false;
+
+      function typeEffect() {
+        const current = texts[textIndex];
+
+        if (!deleting) {
+          changingText.textContent = current.substring(0, charIndex++);
+        } else {
+          changingText.textContent = current.substring(0, charIndex--);
+        }
+
+        let speed = deleting ? 40 : 70;
+
+        if (!deleting && charIndex > current.length) {
+          deleting = true;
+          speed = 1800; // pause before deleting
+        }
+
+        if (deleting && charIndex < 0) {
+          deleting = false;
+          textIndex = (textIndex + 1) % texts.length;
+          speed = 250;
+        }
+
+        setTimeout(typeEffect, speed);
+      }
+
+      typeEffect();
+
+      // Contact
+      const contactBtn = document.getElementById("contactBtn");
+      const contactDirectory = document.getElementById("contactDirectory");
+      const contactArrow = document.getElementById("contactArrow");
+
+      contactBtn.addEventListener("click", () => {
+        contactDirectory.classList.toggle("open");
+
+        contactArrow.textContent = contactDirectory.classList.contains("open")
+          ? "−"
+          : "+";
+      });
+
+      const heroName = document.querySelector(".hero-name");
+
+      setTimeout(() => {
+        heroName.style.animation += ", glow 4s ease-in-out infinite";
+      }, 1150);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-snow@3/tsparticles.preset.snow.bundle.min.js"></script>
+
+    <script>
+      (async () => {
+        await loadSnowPreset(tsParticles);
+
+        await tsParticles.load({
+          id: "tsparticles",
+          options: {
+            preset: "snow",
+
+            background: {
+              color: {
+                value: "transparent",
+              },
+            },
+
+            fullScreen: {
+              enable: true,
+              zIndex: -1,
+            },
+
+            particles: {
+              number: {
+                value: 120,
+              },
+
+              move: {
+                speed: 1.2,
+              },
+
+              size: {
+                value: {
+                  min: 1,
+                  max: 4,
+                },
+              },
+
+              opacity: {
+                value: {
+                  min: 0.3,
+                  max: 0.9,
+                },
+              },
+            },
+          },
+        });
+      })();
+    </script>
+  </body>
+</html>

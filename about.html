@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>About | Ichiko</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --bg:#0d1117;
+    --surface:#161b22;
+    --text:#f8fafc;
+    --muted:#8b949e;
+    --accent:#d946ef;
+    --border:rgba(255,255,255,.08);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    background:#0d1117;
+
+    color:var(--text);
+
+    font-family:Inter,sans-serif;
+
+}
+
+.container{
+
+    width:min(850px,92%);
+
+    margin:auto;
+
+    padding:80px 0;
+
+}
+
+.back{
+
+    color:var(--muted);
+
+    text-decoration:none;
+
+    display:inline-block;
+
+    margin-bottom:40px;
+
+}
+
+h1{
+
+    font-size:3rem;
+
+    margin-bottom:30px;
+
+}
+
+.card{
+
+    background:rgba(255,255,255,.03);
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:35px;
+
+}
+
+.card p{
+
+    color:var(--muted);
+
+    line-height:2;
+
+    margin-bottom:20px;
+
+}
+
+.card img{
+    border-color: white;
+
+    display:inline-block;
+
+    float:right;
+
+    max-width:40%;
+
+    height:auto;
+
+    margin:0 0 1rem 1rem;
+
+    transform:rotate(5deg);
+
+    border-radius:12px;
+
+}
+
+.highlight{
+
+    color:white;
+
+    font-weight:600;
+
+}
+
+/* ===========================
+   Background
+=========================== */
+
+body{
+    background:
+        radial-gradient(circle at top,
+            #1b2230 0%,
+            #11161f 35%,
+            #0d1117 75%);
+}
+
+/* Dark vignette */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+        radial-gradient(circle,
+            transparent 40%,
+            rgba(0,0,0,.25) 100%);
+
+    z-index:-1;
+
+}
+
+/* Snow */
+
+#tsparticles{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-2;
+
+    pointer-events:none;
+
+}
+
+/* ===========================
+   Intro Animations
+=========================== */
+
+.container{
+
+    opacity:0;
+
+    animation:pageFade .8s cubic-bezier(.22,1,.36,1) forwards;
+
+}
+
+.back{
+
+    opacity:0;
+
+    animation:slideDown .7s ease forwards;
+
+    animation-delay:.15s;
+
+}
+
+h1{
+
+    opacity:0;
+
+    animation:slideUp .8s cubic-bezier(.22,1,.36,1) forwards;
+
+    animation-delay:.3s;
+
+}
+
+.card{
+
+    opacity:0;
+
+    animation:cardIntro .9s cubic-bezier(.22,1,.36,1) forwards;
+
+    animation-delay:.55s;
+
+    backdrop-filter:blur(18px);
+
+    background:rgba(255,255,255,.035);
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.35),
+        0 0 80px rgba(217,70,239,.05);
+
+}
+
+/* ===========================
+   Hover
+=========================== */
+
+.card{
+
+    transition:.35s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-6px);
+
+    border-color:rgba(255,255,255,.14);
+
+}
+
+/* ===========================
+   Keyframes
+=========================== */
+
+@keyframes pageFade{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+@keyframes slideDown{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(-18px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:none;
+
+    }
+
+}
+
+@keyframes slideUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:none;
+
+    }
+
+}
+
+@keyframes cardIntro{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px) scale(.97);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:none;
+
+    }
+
+}
+.favorite-animal{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:1.5rem;
+    flex-wrap:wrap;
+}
+
+.favorite-animal img{
+    width:140px;
+    max-width:100%;
+    height:auto;
+
+    border-radius:12px;
+    border:2px solid rgba(255,255,255,.15);
+
+    transform:rotate(5deg);
+
+    transition:.3s ease;
+}
+
+.favorite-animal img:hover{
+    transform:rotate(2deg) scale(1.05);
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="index.html" class="back">← Home</a>
+
+<h1>About Me</h1>
+
+<div class="card">
+
+<p>
+Hello! I'm <span class="highlight">Ichiko</span>, a Roblox & Godot developer who enjoys creating 
+fun experiences for other people to enjoy. <span class="highlight">:3</span>
+</p>
+
+<p>
+I'm mostly active in Roblox Development, and i'm still currently studying both Roblox LuaU and Godot so i still
+ sometimes consider myself a beginner.
+</p>
+
+<p>
+Outside programming, I spend time experimenting with UI design,
+writing systems for games, and learning modern technologies.
+</p>
+
+<p>
+Besides that, i also enjoy writing stories for fun, and for my games as a game concept. 
+</p>
+
+<p class="favorite-animal">
+    <span>My favorite animal is a caterpillar.</span>
+    <img src="cateroilar.webp" alt="Caterpillar">
+</p>
+</div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-snow@3/tsparticles.preset.snow.bundle.min.js"></script>
+
+<script>
+(async () => {
+
+    await loadSnowPreset(tsParticles);
+
+    await tsParticles.load({
+        id: "tsparticles",
+        options: {
+            preset: "snow",
+
+            background: {
+                color: {
+                    value: "transparent"
+                }
+            },
+
+            fullScreen: {
+                enable: true,
+                zIndex: -2
+            },
+
+            particles: {
+                number: {
+                    value: 120
+                },
+
+                move: {
+                    speed: 1.2
+                },
+
+                size: {
+                    value: {
+                        min: 1,
+                        max: 4
+                    }
+                },
+
+                opacity: {
+                    value: {
+                        min: 0.3,
+                        max: 0.9
+                    }
+                }
+            }
+        }
+    });
+
+})();
+</script>
+</body>
+</html>
